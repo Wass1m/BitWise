@@ -60,7 +60,7 @@ rsi = st.executeQuery("select * from notification n INNER JOIN contrat c on c.ID
 rsi=st.executeQuery("select * from client where IDident="+idc+""); // on selectionne le client en rapport avec les notifications
 rsi.first();
 int idi=Integer.parseInt(rsi.getString("IDclient")); 
-rsi = st.executeQuery("select * from notification n INNER JOIN CONTRAT c on c.IDcontrat=n.IDcontrat INNER JOIN client cl on cl.IDclient=c.IDclient WHERE cl.IDclient="+idi+" AND n.type='Client' AND n.notif_status='0' ORDER BY notif_id DESC LIMIT 5 ");
+rsi = st.executeQuery("select * from notification n INNER JOIN CONTRAT c on c.IDcontrat=n.IDcontrat INNER JOIN client cl on cl.IDclient=c.IDclient WHERE cl.IDclient="+idi+" AND n.type='Client' and n.notif_status='0' ORDER BY notif_id DESC LIMIT 5 ");
         // on selectionne les notification concercnants les contrats en rapport avec le client
 
         
@@ -70,7 +70,7 @@ rsi = st.executeQuery("select * from notification n INNER JOIN CONTRAT c on c.ID
         rsi.beforeFirst();
         while(rsi.next()) {
     html1="<li><a href="+"./Etat.jsp?IDcontrat="+rsi.getString("IDcontrat")+""+">  <div>";
-    html2= "<strong>"+ rsi.getString("Notif_Subject") + " <span class=\"pull-right text-muted\"><em style=\"color:blue;font-size:12px\">"+rsi.getString("date")+"</em> </span> </strong>    </div>";
+    html2= "<strong>"+ rsi.getString("Notif_Subject") + "</strong> <span class=\"pull-right text-muted\"><em style=\"color:blue\">"+rsi.getString("date")+"</em> </span>   </div>";
     html3=" <div>"+rsi.getString("Notif_Text")+"</div>";
     html4="</a></li><li class="+"divider"+"></li> ";
     htmlfinal= htmlfinal + " "+ html1 + html2+html3+html4;
